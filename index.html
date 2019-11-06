@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>BLACKJACK GAME</title>
+    <link rel="stylesheet" href="css/index.css" />
+    <link href="https://fonts.googleapis.com/css?family=Oswald:400,700&display=swap" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Patua+One&display=swap" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <div class="splash fade-in">
+      <h1 class="splash-title fade-in">PLAY</h1>
+      <a href="#" class="splash-arrow fade-in"><img src="img/down-arrow.png" /></a>
+    </div>
+    <!-- end .splash -->
+    <div class="wrapper flex">
+        <div id="main-content" class="flex">
+          <div class="card-decks flex flex-dir-col">
+            <div class="dealer">
+              <h2>Dealer Deck <span id="dealerSum"></span></h2>
+                <div id="dealerCards" class="deck flex"></div>
+            </div>
+            <div class="stats flex flex-dir-col justify-cont-spacearound align-item-center"> 
+              <div>
+                <span>Player Wins:</span>
+              </div>
+              <div>
+                <span id="p-wins">0</span>
+              </div>
+              <div>
+                <span>Dealer Wins:</span>
+              </div>
+              <div>
+                <span id="d-wins">0</span>
+              </div>
+              <div>
+                <span>Tie:</span>
+              </div>
+              <div>
+                <span id="ties">0</span>
+              </div>
+            </div>
+          </div>
+            <a href="#" id="logo"><img src="./img/download.png" alt=""></a>
+          <div class="card-decks">
+            <div class="deal-card flex flex-dir-col justify-cont-spacearound align-item-center">
+              <div>
+                <span id="hit" class="transform cursor-pointer">Hit</span>
+              </div>
+              <div>
+                <span id="stand" class="transform cursor-pointer">Stand</span>
+              </div>
+              <div>
+                <span>bankroll:<span id="bank"></span></span>
+              </div>
+              <div>
+              <span>bet:
+                <span id="bet"></span>
+                  <div class="up">
+                    <span class="margin-5">
+                        <img class="adjustbet cursor-pointer" src="./img/minus.png" id="adjustbetdown">
+                    </span>
+                    <span class="margin-5">
+                      <img  class="adjustbet cursor-pointer" src="./img/add-symbol.png" id="adjustbetup">
+                    </span class="margin-5">
+                    <span class="cursor-pointer margin-5" id="allin">all in</span>
+                  </div>
+                </span>
+              </div>
+            </div>
+            <div class="player flex flex-dir-col">
+              <h2><span id="playerSum"></span> Player Deck</h2>
+                <div id="playerCards" class="deck flex justify-cont-center"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    <!-- end .wrapper -->
+    <script
+      type="text/javascript"
+      src="https://unpkg.com/jquery@3.4.1/dist/jquery.js"
+    ></script>
+    <script type="text/javascript" src="js/main.js"></script>
+  </body>
+</html>
