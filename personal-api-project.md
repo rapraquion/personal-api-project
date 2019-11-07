@@ -40,6 +40,4 @@ docs are on this [link](http://deckofcardsapi.com/).
 
 I give credit to [Ethan Jarell](https://twitter.com/jarrell_ethan) for giving me idea on how the flow of the logic work in making this app.
 
-```
-![alt text](https://hackernoon.com/hn-images/1*WcQVqvlw7YrpXjtBORY-Mg.png)
-```
+<img src="./blackjack logic flow.png" />
