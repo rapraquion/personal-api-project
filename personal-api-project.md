@@ -38,6 +38,6 @@ docs are on this [link](http://deckofcardsapi.com/).
 
 ### Credits
 
-I give credit to [Ethan Jarell](https://twitter.com/jarrell_ethan) for giving me idea on how the flow of the logic work in making this app.
+I credit Mr. [Ethan Jarell](https://twitter.com/jarrell_ethan) for giving me idea on how the flow of the logic work in making this app.
 
 <img src="./blackjack logic flow.png" />
