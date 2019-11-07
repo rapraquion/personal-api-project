@@ -29,17 +29,17 @@ $(document).ready(function() {
 
   // start newgame
   newGame.on("click", () => {
-    document.getElementById('adjustbetdown').style.display = "inline";
-    document.getElementById('adjustbetup').style.display = "inline";
-    document.getElementById('allin').style.display = "inline";
-    document.getElementById('hit').style.display = "inline";
-    document.getElementById('stand').style.display = "inline";
-    document.getElementById('d-wins').innerHTML = winsDealer;
-    document.getElementById('p-wins').innerHTML = winsPlayer;
-    document.getElementById('ties').innerHTML = tiePlayer;
-    bankrollP = bankrollP - 100
-    document.getElementById("bank").innerHTML = ' P' + bankrollP;
-    document.getElementById('bet').innerHTML = ' P' + 100
+    document.getElementById("adjustbetdown").style.display = "inline";
+    document.getElementById("adjustbetup").style.display = "inline";
+    document.getElementById("allin").style.display = "inline";
+    document.getElementById("hit").style.display = "inline";
+    document.getElementById("stand").style.display = "inline";
+    document.getElementById("d-wins").innerHTML = winsDealer;
+    document.getElementById("p-wins").innerHTML = winsPlayer;
+    document.getElementById("ties").innerHTML = tiePlayer;
+    bankrollP = bankrollP - 100;
+    document.getElementById("bank").innerHTML = " P" + bankrollP;
+    document.getElementById("bet").innerHTML = " P" + 100;
     player = [];
     dealer = [];
     dealerValues = [];
@@ -51,8 +51,8 @@ $(document).ready(function() {
     document.getElementById("dealerCards").innerHTML = "";
     document.getElementById("playerCards").innerHTML = "";
 
-    fetch("https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1")
-      .then(response => {
+    fetch("https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1").then(
+      response => {
         if (response.status != 200) {
           window.alert("Service Error!");
           return;
@@ -96,7 +96,6 @@ $(document).ready(function() {
                 }
               }
               allCards = firstDeal;
-              
 
               //draw cards to player and dealer
               var card1 = allCards[Math.floor(Math.random() * allCards.length)];
@@ -122,15 +121,15 @@ $(document).ready(function() {
 
               //dealer cards
               for (var i = 0; i < dealer.length; i++) {
-                if(i != 0) {
+                if (i != 0) {
                   card = `<img src="${dealer[i].images.png}" style="width: 110px; height: 140px;"/>`;
                   dealerValues.push(dealer[i].value);
-                  document.getElementById("dealerCards").innerHTML += card
+                  document.getElementById("dealerCards").innerHTML += card;
                 }
-                if(i == 0) {
+                if (i == 0) {
                   card = `<img src="https://cdn.shopify.com/s/files/1/0200/7616/products/playing-cards-bicycle-rider-back-1_1024x1024.png?v=1523371937" style="width: 110px; height: 140px;"/>`;
                   dealerValues.push(dealer[i].value);
-                  document.getElementById("dealerCards").innerHTML += card
+                  document.getElementById("dealerCards").innerHTML += card;
                 }
               } //dealer card
 
@@ -140,9 +139,9 @@ $(document).ready(function() {
                 playerValues.push(player[i].value);
                 document.getElementById("playerCards").innerHTML += card;
               }
-              
+
               // player sum
-              function getSum (total, num) {
+              function getSum(total, num) {
                 return total + num;
               }
               playerSum = playerValues.reduce(getSum);
@@ -156,132 +155,127 @@ $(document).ready(function() {
   }); //end newgame
 
   // bankroll, bet & allin
-  $('#adjustbetup').click(() => {
+  $("#adjustbetup").click(() => {
     let cb = parseInt(document.getElementById("bet").innerHTML.split("P")[1]);
     cb = cb + 20;
-    let br = parseInt(document.getElementById('bank').innerHTML.split('P')[1]);
-    document.getElementById('bank').innerHTML = " P" + (br-20);
-    document.getElementById('bet').innerHTML = " P" + cb;
-  })
-  
-  $('#adjustbetdown').click(() => {
-    let cb = parseInt(document.getElementById('bet').innerHTML.split("P")[1]);
-    cb = cb - 20;
-    let br = parseInt(document.getElementById('bank').innerHTML.split("P")[1]);
-    document.getElementById('bank').innerHTML = " P" + (br+20);
-    document.getElementById('bet').innerHTML = " P" + cb;
-  })
+    let br = parseInt(document.getElementById("bank").innerHTML.split("P")[1]);
+    document.getElementById("bank").innerHTML = " P" + (br - 20);
+    document.getElementById("bet").innerHTML = " P" + cb;
+  });
 
-  $('#allin').click(() => {
-    let cb = parseInt(document.getElementById('bet').innerHTML.split('P')[1]);
-    let br = parseInt(document.getElementById('bank').innerHTML.split('P')[1]);
-    document.getElementById('bet').innerHTML = ' P' + br;
-    document.getElementById('bank').innerHTML = ' P' + 0;
-  })
+  $("#adjustbetdown").click(() => {
+    let cb = parseInt(document.getElementById("bet").innerHTML.split("P")[1]);
+    cb = cb - 20;
+    let br = parseInt(document.getElementById("bank").innerHTML.split("P")[1]);
+    document.getElementById("bank").innerHTML = " P" + (br + 20);
+    document.getElementById("bet").innerHTML = " P" + cb;
+  });
+
+  $("#allin").click(() => {
+    let cb = parseInt(document.getElementById("bet").innerHTML.split("P")[1]);
+    let br = parseInt(document.getElementById("bank").innerHTML.split("P")[1]);
+    document.getElementById("bet").innerHTML = " P" + br;
+    document.getElementById("bank").innerHTML = " P" + 0;
+  });
   // end bankroll
 
-// hit
+  // hit
   hit.on("click", () => {
-    document.getElementById('adjustbetdown').style.display = 'none';
-    document.getElementById('adjustbetup').style.display = 'none';
-    document.getElementById('allin').style.display = 'none';
-   
-  // draw 3rd card
-  var card5 = allCards[Math.floor(Math.random()*allCards.length)]
+    document.getElementById("adjustbetdown").style.display = "none";
+    document.getElementById("adjustbetup").style.display = "none";
+    document.getElementById("allin").style.display = "none";
+
+    // draw 3rd card
+    var card5 = allCards[Math.floor(Math.random() * allCards.length)];
     let index5 = allCards.indexOf(card5);
-    allCards.splice(5,1);
+    allCards.splice(5, 1);
     player.push(card5);
 
-  document.getElementById('playerCards').innerHTML = "";
-  playerValues = [];
+    document.getElementById("playerCards").innerHTML = "";
+    playerValues = [];
 
-  for(var i = 0; i < player.length; i++) {
-    card = `<img src="${player[i].images.png}" style="transform: rotate(140deg) width: 110px; height: 140px;"/>`;
-    playerValues.push(player[i].value);
-    document.getElementById("playerCards").innerHTML += card;
-  }
-
-  function getSum(total, num) {
-    return total + num;
-  }
-  playerSum = playerSum + card5.value;
-
-  if (playerSum > 21 && playerValues.includes(11) == true) {
-    let pAce = playerValues.indexOf(11);
-    playerValues[pAce] = 1;
-    playerSum = playerValues.reduce(getSum);
-    document.getElementById('playerSum').innerHTML = playerSum;
-  }
-
-  if (playerSum > 21 && playerValues.includes(11) == false) {
-    document.getElementById('playerSum').innerHTML = playerSum;
-    let cb = parseInt(document.getElementById('bet').innerHTML.split('P')[1]);
-    document.getElementById('bet').innerHTML = ' P' + 0;
-    bankrollP = document.getElementById('bank').innerHTML.split('P')[1];
-
-    winsDealer = winsDealer + 1;
-
-    document.getElementById('p-wins').innerHTML = winsPlayer;
-    document.getElementById('d-wins').innerHTML = winsDealer;
-    dealerValues = [];
-    document.getElementById('dealerCards').innerHTML = '';
-
-    for(var i = 0; i < dealer.length; i++) {
-      card = `<img src="${dealer[i].images.png}" style="width: 110px; height: 140px;"/>`;
-      dealerValues.push(dealer[i].value);
-      document.getElementById('dealerCards').innerHTML += card;
-    }
-  }
-
-  if(playerSum <=21){
-    document.getElementById('playerSum').innerHTML = playerSum;
-  }
-
-  if(dealerSum < 13) {
-    //draw 3rd card for dealer
-    var card5 = allCards[Math.floor(Math.random()*allCards.length)]
-    let index5 = allCards.indexOf(card5);
-    allCards.splice(5,1);
-    dealer.push(card5);
-
-    document.getElementById('dealerCards').innerHTML = '';
-    dealerValues = [];
-
-    for(var i = 0; i < dealer.length; i++){
-      if(i != 0){
-        card = `<img src="${dealer[i].images.png}" style="width: 110px; height: 140px;"/>`;
-        dealerValues.push(dealer[i].value);
-        document.getElementById('dealerCards').innerHTML += card;
-      }
-      if(i == 0){
-        card = `<img src="https://cdn.shopify.com/s/files/1/0200/7616/products/playing-cards-bicycle-rider-back-1_1024x1024.png?v=1523371937" style="width: 110px; height: 140px;"/>`;
-        dealerValues.push(dealer[i].value);
-        document.getElementById("dealerCards").innerHTML += card
-      }
+    for (var i = 0; i < player.length; i++) {
+      card = `<img src="${player[i].images.png}" style="transform: rotate(140deg) width: 110px; height: 140px;"/>`;
+      playerValues.push(player[i].value);
+      document.getElementById("playerCards").innerHTML += card;
     }
 
-    function getSum(total, num){
+    function getSum(total, num) {
       return total + num;
     }
+    playerSum = playerSum + card5.value;
 
-    dealerSum = dealerSum + card5.value;
-    if(dealerSum > 21 && dealerValues.includes(11) == true){
-      let dAce = dealerValues.indexOf(11);
-      dAce = 1;
-      dealerSum = dealerValues.reduce(getSum);
+    if (playerSum > 21 && playerValues.includes(11) == true) {
+      let pAce = playerValues.indexOf(11);
+      playerValues[pAce] = 1;
+      playerSum = playerValues.reduce(getSum);
+      document.getElementById("playerSum").innerHTML = playerSum;
     }
-    
-  } //end dealerSum < 13
-}); //end hit
 
+    if (playerSum > 21 && playerValues.includes(11) == false) {
+      document.getElementById("playerSum").innerHTML = playerSum;
+      let cb = parseInt(document.getElementById("bet").innerHTML.split("P")[1]);
+      document.getElementById("bet").innerHTML = " P" + 0;
+      bankrollP = document.getElementById("bank").innerHTML.split("P")[1];
+      winsDealer = winsDealer + 1;
+      document.getElementById("p-wins").innerHTML = winsPlayer;
+      document.getElementById("d-wins").innerHTML = winsDealer;
+      dealerValues = [];
+      document.getElementById("dealerCards").innerHTML = "";
 
+      for (var i = 0; i < dealer.length; i++) {
+        card = `<img src="${dealer[i].images.png}" style="width: 110px; height: 140px;"/>`;
+        dealerValues.push(dealer[i].value);
+        document.getElementById("dealerCards").innerHTML += card;
+      }
+    }
+
+    if (playerSum <= 21) {
+      document.getElementById("playerSum").innerHTML = playerSum;
+    }
+
+    if (dealerSum < 13) {
+      //draw 3rd card for dealer
+      var card5 = allCards[Math.floor(Math.random() * allCards.length)];
+      let index5 = allCards.indexOf(card5);
+      allCards.splice(5, 1);
+      dealer.push(card5);
+
+      document.getElementById("dealerCards").innerHTML = "";
+      dealerValues = [];
+
+      for (var i = 0; i < dealer.length; i++) {
+        if (i != 0) {
+          card = `<img src="${dealer[i].images.png}" style="width: 110px; height: 140px;"/>`;
+          dealerValues.push(dealer[i].value);
+          document.getElementById("dealerCards").innerHTML += card;
+        }
+        if (i == 0) {
+          card = `<img src="https://cdn.shopify.com/s/files/1/0200/7616/products/playing-cards-bicycle-rider-back-1_1024x1024.png?v=1523371937" style="width: 110px; height: 140px;"/>`;
+          dealerValues.push(dealer[i].value);
+          document.getElementById("dealerCards").innerHTML += card;
+        }
+      }
+
+      function getSum(total, num) {
+        return total + num;
+      }
+
+      dealerSum = dealerSum + card5.value;
+      if (dealerSum > 21 && dealerValues.includes(11) == true) {
+        let dAce = dealerValues.indexOf(11);
+        dAce = 1;
+        dealerSum = dealerValues.reduce(getSum);
+      }
+    } //end dealerSum < 13
+  }); //end hit
 
   //stand
   stand.on("click", () => {
-    document.getElementById('hit').style.display = 'none';
-    document.getElementById('stand').style.display = 'none';
+    document.getElementById("hit").style.display = "none";
+    document.getElementById("stand").style.display = "none";
 
-    function getSum (total, num) {
+    function getSum(total, num) {
       return total + num;
     }
 
@@ -292,134 +286,137 @@ $(document).ready(function() {
 
     dealerSum = dealerValues.reduce(getSum);
     //always hit for dealer
-    while(playerSum > dealerSum && playerSum <= 21){
-      var card7 = allCards[Math.floor(Math.random()*allCards.length)];
+    while (playerSum > dealerSum && playerSum <= 21) {
+      var card7 = allCards[Math.floor(Math.random() * allCards.length)];
       let index7 = allCards.indexOf(card7);
-      allCards.splice(index7,1);
-      dealer.push(card7)
+      allCards.splice(index7, 1);
+      dealer.push(card7);
 
-      document.getElementById('dealerCards').innerHTML = '';
+      document.getElementById("dealerCards").innerHTML = "";
       dealerValues = [];
 
-      for(var i = 0; i < dealer.length; i++){
-        if(i != 0){
+      for (var i = 0; i < dealer.length; i++) {
+        if (i != 0) {
           card = `<img src="${dealer[i].images.png}" style="width: 110px; height: 140px;"/>`;
           dealerValues.push(dealer[i].value);
-          document.getElementById('dealerCards').innerHTML += card;
+          document.getElementById("dealerCards").innerHTML += card;
         }
-        if(i == 0){
+        if (i == 0) {
           card = `<img src="${dealer[i].images.png}" style="width: 110px; height: 140px;"/>`;
           dealerValues.push(dealer[i].value);
-          document.getElementById("dealerCards").innerHTML += card
+          document.getElementById("dealerCards").innerHTML += card;
         }
       }
 
       dealerSum = dealerValues.reduce(getSum);
-      if(dealerSum > 21 && dealerValues.includes(11) == true){
+      if (dealerSum > 21 && dealerValues.includes(11) == true) {
         let aceIndex = dealerValues.indexOf(11);
         dealerValues[aceIndex] = 1;
         dealerSum = dealerValues.reduce(getSum);
       }
-      document.getElementById('dealerSum').innerHTML = dealerSum;
+      document.getElementById("dealerSum").innerHTML = dealerSum;
     } //while end
 
     dealerSum = dealerValues.reduce(getSum);
     playerSum = playerValues.reduce(getSum);
 
     // determine winner
-    if(dealerSum > playerSum && dealerSum <= 21) {
+    if (dealerSum > playerSum && dealerSum <= 21) {
       winsDealer = winsDealer + 1;
 
-      let cb = parseInt(document.getElementById('bet').innerHTML.split('P')[1]);
-      let br = parseInt(document.getElementById('bank').innerHTML.split('P')[1]);
-      document.getElementById('bet').innerHTML = " P" + 0;
-      bankrollP = document.getElementById('bank').innerHTML.split("P")[1];
-
-      document.getElementById('p-wins').innerHTML = winsPlayer;
-      document.getElementById('d-wins').innerHTML = winsDealer;
+      let cb = parseInt(document.getElementById("bet").innerHTML.split("P")[1]);
+      let br = parseInt(
+        document.getElementById("bank").innerHTML.split("P")[1]
+      );
+      document.getElementById("bet").innerHTML = " P" + 0;
+      bankrollP = document.getElementById("bank").innerHTML.split("P")[1];
+      document.getElementById("p-wins").innerHTML = winsPlayer;
+      document.getElementById("d-wins").innerHTML = winsDealer;
       dealerValues = [];
-      document.getElementById('dealerCards').innerHTML = "";
+      document.getElementById("dealerCards").innerHTML = "";
 
-      for(var i = 0; i < dealer.length; i++){
+      for (var i = 0; i < dealer.length; i++) {
         card = card = `<img src="${dealer[i].images.png}" style="width: 110px; height: 140px;"/>`;
         dealerValues.push(dealer[i].value);
-        document.getElementById('dealerCards').innerHTML += card;
+        document.getElementById("dealerCards").innerHTML += card;
       }
     }
 
-    
-    if(playerSum > dealerSum && playerSum <= 21){
-      let cb = parseInt(document.getElementById('bet').innerHTML.split("P")[1]);
-      let br = parseInt(document.getElementById('bank').innerHTML.split("P")[1]);
-      document.getElementById('bank').innerHTML = " P" + [br + (cb*2)];
-      document.getElementById('bet').innerHTML = " P" + 0;
-      bankrollP = document.getElementById('bank').innerHTML.split("P")[1];
-      winsPlayer = winsPlayer + 1;
-      document.getElementById('p-wins').innerHTML = winsPlayer;
-      document.getElementById('d-wins').innerHTML = winsDealer;
-      dealerValues = [];
-      document.getElementById('dealerCards').innerHTML = "";
-
-      for (var i = 0; i < dealer.length; i++){
-        card = card = `<img src="${dealer[i].images.png}" style="width: 110px; height: 140px;"/>`;
-        dealerValues.push(dealer[i].value);
-        document.getElementById('dealerCards').innerHTML += card;
-      }
-    }
-
-    if(dealerSum <= 21 && playerSum > 21) {
+    if (dealerSum <= 21 && playerSum > 21) {
       winsDealer = winsDealer + 1;
-      let cb = parseInt(document.getElementById('bet').innerHTML.split("P")[1]);
-      let br = parseInt(document.getElementById('bank').innerHTML.split("P")[1]);
-      document.getElementById('bet').innerHTML = " P" + 0;
-      bankrollP = document.getElementById('bank').innerHTML.split("P")[1];
-
-      document.getElementById('p-wins').innerHTML = winsPlayer;
-      document.getElementById('d-wins').innerHTML = winsDealer;
+      let cb = parseInt(document.getElementById("bet").innerHTML.split("P")[1]);
+      let br = parseInt(
+        document.getElementById("bank").innerHTML.split("P")[1]
+      );
+      document.getElementById("bet").innerHTML = " P" + 0;
+      bankrollP = document.getElementById("bank").innerHTML.split("P")[1];
+      document.getElementById("p-wins").innerHTML = winsPlayer;
+      document.getElementById("d-wins").innerHTML = winsDealer;
       dealerValues = [];
-      document.getElementById('dealerCards').innerHTML = "";
+      document.getElementById("dealerCards").innerHTML = "";
 
-      for(var i = 0; i < dealer.length; i++){
+      for (var i = 0; i < dealer.length; i++) {
         card = card = `<img src="${dealer[i].images.png}" style="width: 110px; height: 140px;"/>`;
         dealerValues.push(dealer[i].value);
-        document.getElementById('dealerCards').innerHTML += card;
+        document.getElementById("dealerCards").innerHTML += card;
       }
     }
 
-    if(playerSum <=21 && dealerSum > 21){
-      let cb = parseInt(document.getElementById('bet').innerHTML.split("P")[1]);
-      let br = parseInt(document.getElementById('bank').innerHTML.split("P")[1]);
-      document.getElementById('bank').innerHTML = " P" + (br + cb);
-      document.getElementById('bet').innerHTML = " P" + 0;
-      bankrollP = document.getElementById('bank').innerHTML.split("P")[1];
+    if (playerSum <= 21 && dealerSum > 21) {
+      let cb = parseInt(document.getElementById("bet").innerHTML.split("P")[1]);
+      let br = parseInt(
+        document.getElementById("bank").innerHTML.split("P")[1]
+      );
+      document.getElementById("bank").innerHTML = " P" + (br + cb);
+      document.getElementById("bet").innerHTML = " P" + 0;
+      bankrollP = document.getElementById("bank").innerHTML.split("P")[1];
       winsPlayer = winsPlayer + 1;
-
-      document.getElementById('p-wins').innerHTML = winsPlayer;
-      document.getElementById('d-wins').innerHTML = winsDealer;
+      document.getElementById("p-wins").innerHTML = winsPlayer;
+      document.getElementById("d-wins").innerHTML = winsDealer;
       dealerValues = [];
-      document.getElementById('dealerCards').innerHTML = "";
+      document.getElementById("dealerCards").innerHTML = "";
 
-      for(var i = 0; i < dealer.length; i++){
+      for (var i = 0; i < dealer.length; i++) {
         card = card = `<img src="${dealer[i].images.png}" style="width: 110px; height: 140px;"/>`;
         dealerValues.push(dealer[i].value);
-        document.getElementById('dealerCards').innerHTML += card;
+        document.getElementById("dealerCards").innerHTML += card;
       }
-    } 
+    }
+
+    if (playerSum > dealerSum && playerSum <= 21) {
+      let cb = parseInt(document.getElementById("bet").innerHTML.split("P")[1]);
+      let br = parseInt(
+        document.getElementById("bank").innerHTML.split("P")[1]
+      );
+      document.getElementById("bank").innerHTML = " P" + [br + cb * 2];
+      document.getElementById("bet").innerHTML = " P" + 0;
+      bankrollP = document.getElementById("bank").innerHTML.split("P")[1];
+      winsPlayer = winsPlayer + 1;
+      document.getElementById("p-wins").innerHTML = winsPlayer;
+      document.getElementById("d-wins").innerHTML = winsDealer;
+      dealerValues = [];
+      document.getElementById("dealerCards").innerHTML = "";
+
+      for (var i = 0; i < dealer.length; i++) {
+        card = `<img src="${dealer[i].images.png}" style="width: 110px; height: 140px;"/>`;
+        dealerValues.push(dealer[i].value);
+        document.getElementById("dealerCards").innerHTML += card;
+      }
+    }
     //end determining winner
     // if tied
-    if(playerSum == dealerSum) {
+    if (playerSum == dealerSum) {
       tiePlayer = tiePlayer + 1;
-      document.getElementById('ties').innerHTML = tiePlayer;
-      document.getElementById('p-wins').innerHTML = winsPlayer;
-      document.getElementById('d-wins').innerHTML = winsDealer;
-
+      document.getElementById("ties").innerHTML = tiePlayer;
+      document.getElementById("p-wins").innerHTML = winsPlayer;
+      document.getElementById("d-wins").innerHTML = winsDealer;
       dealerValues = [];
-      document.getElementById('dealerCards').innerHTML = "";
+      document.getElementById("dealerCards").innerHTML = "";
 
-      for(var i = 0; i < dealer.length; i++){
+      for (var i = 0; i < dealer.length; i++) {
         card = card = `<img src="${dealer[i].images.png}" style="width: 110px; height: 140px;"/>`;
         dealerValues.push(dealer[i].value);
-        document.getElementById('dealerCards').innerHTML += card;
+        document.getElementById("dealerCards").innerHTML += card;
       }
     } //end tie
   }); //end stand
