@@ -27,7 +27,9 @@ Once the cards have been dealt, players decide in turn how to play out their han
 ## Built with
 
 HTML & CSS for the mark-up.
-ES6, JQuery & VanillaJS for the in-game functionalities.
+JQuery for the splash screen
+VanillaJS for the DOM retrieval and
+ES6 for the in-game functions.
 
 ## API Resources
 
@@ -36,7 +38,7 @@ docs are on this [link](http://deckofcardsapi.com/).
 
 ### Credits
 
-I give credit to [Ethan Jarell](https://twitter.com/jarrell_ethan) for giving me idea on how the flow of the logic work in making this game.
+I give credit to [Ethan Jarell](https://twitter.com/jarrell_ethan) for giving me idea on how the flow of the logic work in making this app.
 
 ```
 ![alt text](https://hackernoon.com/hn-images/1*WcQVqvlw7YrpXjtBORY-Mg.png)
